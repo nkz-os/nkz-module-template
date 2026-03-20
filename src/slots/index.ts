@@ -9,7 +9,7 @@
  *   entity-tree    — context menu entry in the entity tree
  *   dashboard-widget — card in the tenant dashboard
  */
-import type { ModuleViewerSlots } from '@nekazari/sdk';
+import type { ModuleViewerSlots } from '../types/module-slots';
 import { ExampleSlot } from '../components/slots/ExampleSlot';
 
 const MODULE_ID = 'MODULE_NAME';

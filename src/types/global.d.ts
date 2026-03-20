@@ -2,7 +2,7 @@
  * Global type declarations for the Nekazari host runtime.
  * These globals are injected by the host before module bundles execute.
  */
-import type { ModuleViewerSlots } from '@nekazari/sdk';
+import type { ModuleViewerSlots } from './module-slots';
 
 declare global {
   interface Window {
