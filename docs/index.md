@@ -1,6 +1,6 @@
 ---
-title: [Tu Nombre de Módulo Aquí]
-description: Escribe aquí una descripción muy breve (1 línea) de lo que hace tu módulo.
+title: "[Tu Nombre de Módulo Aquí]"
+description: "Escribe aquí una descripción muy breve (1 línea) de lo que hace tu módulo."
 sidebar:
   order: 1
 ---
