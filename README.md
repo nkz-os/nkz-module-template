@@ -9,7 +9,7 @@ Modules compile to a single IIFE bundle (`dist/nkz-module.js`) that is uploaded 
 ## Quick start
 
 ```bash
-git clone https://github.com/k8-benetis/nkz-module-template.git my-module
+git clone https://github.com/nkz-os/nkz-module-template.git my-module
 cd my-module
 npm install
 ```
@@ -143,7 +143,7 @@ If your module collects timeseries data, the DataHub module can visualise it in 
 - **Data in platform TimescaleDB**: nothing needed — DataHub finds it automatically.
 - **Data in an external system**: implement a `GET /api/timeseries/entities/{id}/data` endpoint returning **Apache Arrow IPC** (`float64` epoch seconds, `float64` value), declare `source` in the NGSI-LD entity attribute, and set `TIMESERIES_ADAPTER_<SOURCE>_URL` in the DataHub BFF.
 
-Full contract: [ADAPTER_SPEC.md](https://github.com/k8-benetis/nkz-module-data-hub/blob/main/ADAPTER_SPEC.md)
+Full contract: [ADAPTER_SPEC.md](https://github.com/nkz-os/nkz-module-data-hub/blob/main/ADAPTER_SPEC.md)
 
 ---
 
