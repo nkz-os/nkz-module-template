@@ -104,6 +104,25 @@ This backend trusts api-gateway-injected headers (`X-Tenant-ID`, `X-User-ID`,
 for the `/internal/*` routes called by entity-manager and other in-cluster
 services; without it those routes always reject with 401.
 
+## Database rules (only if the backend uses PostgreSQL)
+
+- **Own database and role.** The module gets its own database `nkz_MODULE_NAME`
+  and login role `nkz_module_MODULE_NAME`; its DSN comes from the Secret
+  `db-nkz-module-MODULE_NAME` (key `url`). Never the platform superuser secret.
+- **Never read platform tables.** Where the module is installed comes from the
+  platform: `nkz_platform_sdk.installations.installed_tenants("MODULE_NAME")`.
+  Do not query `tenants` or `tenant_installed_modules`; the module role cannot.
+  `tests/test_platform_tables.py` fails if the code names them.
+- **Schema changes are migrations, not start-up code.** Keep them in the module's
+  own database with a ledger table named after the module (not a generic
+  `schema_migrations`). `CREATE ... IF NOT EXISTS` still needs the CREATE
+  privilege on the schema, even when the object exists.
+- **Row-level security.** If a table has a policy, set the variable the policy
+  reads in every transaction, and test with a role that neither owns the table
+  nor is a superuser: both skip the policy and hide the bug.
+- **Retry the first connection.** A new pod can try to connect before its network
+  policy is in place; retry instead of crashing.
+
 ## 10. Activate for tenants
 
 Tenants enable the module via the platform UI, or directly:

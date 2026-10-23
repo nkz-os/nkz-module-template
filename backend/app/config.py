@@ -28,10 +28,11 @@ class Settings(BaseSettings):
     # `internal-service-secret` (org-level) in production. No default.
     internal_service_secret: str = ""
 
-    # Database (optional). Only set this if your module writes admin/metadata
-    # to PostgreSQL directly (tenants, credentials, non-timeseries state) —
+    # Database (optional). Only set this if your module keeps its own
+    # non-timeseries state in its own database (SETUP.md "Database rules") —
     # NEVER for time-series/telemetry, which must flow through Orion-LD
-    # subscriptions. No hardcoded fallback: see require_postgres_url() below.
+    # subscriptions, and never to read platform tables. No hardcoded fallback:
+    # see require_postgres_url() below.
     postgres_url: str = ""
 
     # Redis (for caching/celery - optional)
